@@ -1,0 +1,11 @@
+.plug_translateboxclass{
+    border:1px solid ;
+    position: fixed;
+    z-index:100;
+    border-radius: 20%;
+    -webkit-border-radius: 20%;
+    -moz-border-radius: 20%;
+    -ms-border-radius: 20%;
+    -o-border-radius: 20%;
+    padding: 10px;
+}

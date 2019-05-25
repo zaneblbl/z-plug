@@ -1,0 +1,42 @@
+{
+    "name": "Translate",
+    "description": "Translate Language",
+    "version": "1.0",
+    "manifest_version": 2,
+
+    "browser_action": {
+        "default_popup": "index.html",
+        "default_icon": "logo.png",
+        "default_title": "Go Translate"
+    },
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Alt+Q"
+            },
+            "description": "Open Translate"
+        }
+    },
+    "permissions": [
+        "contextMenus",
+        "storage",
+        "notifications",
+        "tabs", 
+        "*://*/*"
+    ],
+    "icons": {
+        "16": "logo.png",
+        "48": "logo.png",
+        "128": "logo.png"
+    },
+    "background": {
+        "scripts": ["jquery.js","background.js"]
+      },
+    "content_scripts": [{
+        "matches": ["*://*/*"],
+        "css": ["translate.css"],
+        "js": ["translate.js"],
+        "run_at": "document_end"
+    }]
+
+}
