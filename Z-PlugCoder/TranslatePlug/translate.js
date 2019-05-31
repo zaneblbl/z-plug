@@ -1,5 +1,3 @@
-console.log('start');
-
 document.addEventListener('mouseup', function (e) {
     //获取鼠标的位置
     e = e || window.event;
@@ -44,7 +42,8 @@ function link_translate(from, to, txt) {
     return new Promise((resolve, reject) => {
         //通知后台background.js发送跨域请求
         chrome.extension.sendMessage({
-            'url': links('youdao', txt)
+            'url': links('youdao', txt),
+            'type':'get'
         }, function (ret) {
             if (ret != null || ret != undefined) {
                 var jsonret = JSON.parse(ret);
@@ -58,7 +57,7 @@ function link_translate(from, to, txt) {
 //删除box
 var remove_box = function () {
     var box = document.getElementById('plug_translatebox');
-    if (box != null) {
+    if (box) {
         document.body.removeChild(box);
     }
 }
