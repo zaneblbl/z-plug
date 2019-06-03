@@ -40,7 +40,8 @@
         ],
         "js": ["./TranslatePlug/translate.js",
             "./WindowPlug/window.js",
-            "./Sprite/sprite.js"
+            "./Sprite/sprite.js",
+            "./LightClose/LightClose.js"
         ],
         "run_at": "document_end"
     }]

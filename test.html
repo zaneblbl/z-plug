@@ -10,55 +10,59 @@
 </head>
 
 <style>
-    *{
-        margin:0;
-        padding:0;
+    * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
     }
-    #main{
-        width:400px;
-        height:400px;
+
+    #main {
+        width: 400px;
+        height: 400px;
     }
-.canvas{
-    position: absolute;
-    left:40px;
-    top:40px;
-    border:1px solid black;
-}
+
+    .canvas {
+        position: absolute;
+        left: 40px;
+        top: 40px;
+        border: 1px solid black;
+    }
 </style>
 
 <body>
-   
-        <!-- <div class='plug_translateboxclass' id='plug_translatebox'><span>fdddddddddddddddddddddddfffff</span></div> -->
-        
+
+    <!-- <div class='plug_translateboxclass' id='plug_translatebox'><span>fdddddddddddddddddddddddfffff</span></div> -->
+
     <div id='main'>
-            <canvas class='canvas' id='canvas' ></canvas>
+        <canvas class='canvas' id='canvas'></canvas>
 
     </div>
-    
+
 </body>
 <!-- <script src='./TranslatePlug/translate.js'></script> -->
 
 <script>
-    var canvas=document.getElementById('canvas');
-    var main =document.getElementById('main');
-    canvas.width=main.offsetWidth;
-    canvas.height=main.offsetHeight;
+    // 给定 nums = [2, 7, 11, 15], target = 9
 
+    // 因为 nums[0] + nums[1] = 2 + 7 = 9
+    // 所以返回 [0, 1]
 
+    var nums = [2, 7, 11, 15];
+    var target = 9;
 
-    if(canvas.getContext){
-        var ctx=canvas.getContext('2d');
-
-        ctx.beginPath();
-        ctx.moveTo(0,0);
-        ctx.lineTo(200,200);
-        ctx.lineTo(0,400);
-        ctx.closePath();
-        ctx.stroke();
+    var r=result(nums,target);
+    document.write(r);
+    
+    function result(nums, target) {
+        for (let i = 0; i < nums.length; i++) {
+            let add2 = target - nums[i];
+            for (let j = 0; j < nums.length; j++) {
+                if(add2===nums[j]){
+                    return [i,j];
+                }
+            }
+        }
     }
-  
-
 </script>
 
 </html>
