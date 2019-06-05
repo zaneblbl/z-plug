@@ -31,38 +31,12 @@
 
 <body>
 
-    <!-- <div class='plug_translateboxclass' id='plug_translatebox'><span>fdddddddddddddddddddddddfffff</span></div> -->
-
-    <div id='main'>
-        <canvas class='canvas' id='canvas'></canvas>
-
-    </div>
-
 </body>
 <!-- <script src='./TranslatePlug/translate.js'></script> -->
-
+<script src='./Z-PlugCoder/Sprite/sprite.js'></script>
+<script src='./Z-PlugCoder/WindowPlug/window.js'></script>
 <script>
-    // 给定 nums = [2, 7, 11, 15], target = 9
 
-    // 因为 nums[0] + nums[1] = 2 + 7 = 9
-    // 所以返回 [0, 1]
-
-    var nums = [2, 7, 11, 15];
-    var target = 9;
-
-    var r=result(nums,target);
-    document.write(r);
-    
-    function result(nums, target) {
-        for (let i = 0; i < nums.length; i++) {
-            let add2 = target - nums[i];
-            for (let j = 0; j < nums.length; j++) {
-                if(add2===nums[j]){
-                    return [i,j];
-                }
-            }
-        }
-    }
 </script>
 
 </html>

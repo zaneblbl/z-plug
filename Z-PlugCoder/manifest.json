@@ -3,7 +3,12 @@
     "description": "z-plug",
     "version": "1.0",
     "manifest_version": 2,
-
+    "options_page": "config.html",
+    "options_ui":
+    {
+        "page": "config.html",
+        "chrome_style": true
+    },
     "browser_action": {
         "default_popup": "index.html",
         "default_icon": "logo.png",
@@ -38,9 +43,9 @@
             "./WindowPlug/window.css",
             "./Sprite/sprite.css"
         ],
-        "js": ["./TranslatePlug/translate.js",
+        "js": ["./Sprite/sprite.js",
+            "./TranslatePlug/translate.js",
             "./WindowPlug/window.js",
-            "./Sprite/sprite.js",
             "./LightClose/LightClose.js"
         ],
         "run_at": "document_end"
