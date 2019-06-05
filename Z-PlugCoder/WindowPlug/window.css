@@ -1,0 +1,69 @@
+.plug_window_main {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 1px solid;
+    top: 30px;
+    right: 10px;
+    z-index: 50;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    animation: window_show 0.5s;
+    -webkit-animation: window_show 0.5s;
+}
+
+@keyframes window_show {
+    0% {
+        width: 0;
+        height: 0;
+        top: 0;
+        right: 0;
+        font-size:0;
+    }
+
+    100% {
+        width: 50px;
+        height: 50px;
+        border: 1px solid;
+        top: 30px;
+        right: 10px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+    }
+}
+
+.plug_window_main .plug_window_city {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    animation: cityname 0.5s;
+    -webkit-animation: cityname 0.5s;
+}
+
+@keyframes cityname{
+    0%{
+        font-size:0;
+    }
+    100%{
+        font-size:14px;
+    }
+}

@@ -1,5 +1,5 @@
 console.log('window start');
-
+const maindiv=document.getElementById('plug_main');
 const window_url = 'http://wthrcdn.etouch.cn/weather_mini?city=';
 show_window_data('杭州');
 //展示天气信息
@@ -16,12 +16,11 @@ function show_window_data(city) {
                 console.log(forecast);
             }
 
-            
-            let showdiv=``;
-
+            let showdiv=`<div class='plug_window_main'><span class='plug_window_city'>${city}</span></div>`;
+            let div=document.createElement('div');
+            div.innerHTML=showdiv;
+            maindiv.appendChild(div);
         }
-
-
     }, (error) => {
         console.log(error);
     });
