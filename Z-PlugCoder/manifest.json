@@ -39,11 +39,21 @@
     },
     "content_scripts": [{
         "matches": ["*://*/*"],
-        "css": ["./TranslatePlug/translate.css",
+        "css": [
+            "./Main/main.css",
+            "./TranslatePlug/translate.css",
             "./WindowPlug/window.css",
             "./Sprite/sprite.css"
         ],
-        "js": ["./Sprite/sprite.js",
+        "js": [
+            "./Main/main.js",
+            "./Common/three.min.js",
+            "./Common/SimplexNoise.min.js",
+            "./Common/TweenMax.min.js",
+            "./Common/chroma.min.js",
+            "./Common/OrbitControls.js",
+            "./Stage/earthstage.js",
+            "./Sprite/sprite.js",
             "./TranslatePlug/translate.js",
             "./WindowPlug/window.js",
             "./LightClose/LightClose.js"

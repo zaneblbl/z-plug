@@ -16,10 +16,10 @@ function show_window_data(city) {
                 console.log(forecast);
             }
 
-            let showdiv=`<div class='plug_window_main'><span class='plug_window_city'>${city}</span></div>`;
-            let div=document.createElement('div');
-            div.innerHTML=showdiv;
-            maindiv.appendChild(div);
+            // let showdiv=`<div class='plug_window_main'><span class='plug_window_city'>${city}</span></div>`;
+            // let div=document.createElement('div');
+            // div.innerHTML=showdiv;
+            // maindiv.appendChild(div);
         }
     }, (error) => {
         console.log(error);
