@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- <style src='./Z-PlugCoder/TranslatePlug/translate.css'></style> -->
-    <style src='./Z-PlugCoder/WindowPlug/window.css'></style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- <style src='./Z-PlugCoder/TranslatePlug/translate.css'></style> -->
+  <link rel="stylesheet" href="./Z-PlugCoder/WindowPlug/window.css">
 </head>
 
 <style>
@@ -19,9 +19,82 @@
 </body>
 
 <!-- <script src='./Z-PlugCoder/Common/three.min.js'></script> -->
-<script src='./Z-PlugCoder/WindowPlug/window.js'></script>
+<!-- <script src='./Z-PlugCoder/WindowPlug/window.js'></script> -->
 <script>
+  var data =
+    `{"yesterday":{"date":"24日星期一","high":"高温 29℃","fx":"东风","low":"低温 23℃","fl":"<![CDATA[3-4级]]>","type":"多云"},"city":"杭州","forecast":[{"date":"25日星期二","high":"高温 25℃","fengli":"<![CDATA[<3级]]>","low":"低温 23℃","fengxiang":"东南风","type":"中雨"},{"date":"26日星期三","high":"高温 31℃","fengli":"<![CDATA[<3级]]>","low":"低温 23℃","fengxiang":"东北风","type":"小雨"},{"date":"27日星期四","high":"高温 32℃","fengli":"<![CDATA[<3级]]>","low":"低温 24℃","fengxiang":"东风","type":"多云"},{"date":"28日星期五","high":"高温 35℃","fengli":"<![CDATA[<3级]]>","low":"低温 26℃","fengxiang":"无持续风向","type":"小雨"},{"date":"29日星期六","high":"高温 35℃","fengli":"<![CDATA[<3级]]>","low":"低温 26℃","fengxiang":"无持续风向","type":"多云"}],"ganmao":"相对于今天将会出现大幅度降温，空气湿度较大，易发生感冒，请注意适当增加衣服。","wendu":"21"}`;
 
+  var json = JSON.parse(data);
+
+  let {
+    city,
+    forecast,
+    ganmao,
+    wendu
+  } = json;
+
+  //温度显示
+  var temp = document.createElement('div');
+  temp.id = 'temp';
+  temp.classList.add('plug_window_temp');
+  temp.innerHTML =
+    `<div><img src='./Z-PlugCoder/WindowPlug/Resources/bigrain.png'><span title=${ganmao}>${wendu}℃</span></div>`;
+  window.document.body.appendChild(temp);
+  let movetarget = document.getElementById('temp');
+  stage_move(movetarget);
+
+  function stage_move(target) {
+    var box = target; //获取元素
+            var x, y; //存储div的坐标
+            var isDrop = false; //移动状态的判断鼠标按下才能移动
+            box.onmousedown = function(e) {
+                var e = e || window.event; //要用event这个对象来获取鼠标的位置
+                x = e.clientX - box.offsetLeft;
+                y = e.clientY - box.offsetTop;
+                isDrop = true; //设为true表示可以移动
+            }
+
+            document.onmousemove = function(e) {
+                //是否为可移动状态                　　　　　　　　　　　 　　　　　　　
+                if(isDrop) {　　　　
+                    var e = e || window.event;                    　　
+                    var moveX = e.clientX - x; //得到距离左边距离                    　　
+                    var moveY = e.clientY - y; //得到距离上边距离
+                    
+                    var maxX = document.documentElement.clientWidth - box.offsetWidth;
+                    var maxY = document.documentElement.clientHeight - box.offsetHeight;
+
+                    //范围限定  当移动的距离最小时取最大  移动的距离最大时取最小
+                    //范围限定一
+                    /*if(moveX < 0) {
+                        moveX = 0
+                    } else if(moveX > maxX) {
+                        moveX = maxX;
+                    }
+
+                    if(moveY < 0) {
+                        moveY = 0;
+                    } else if(moveY > maxY) {
+                        moveY = maxY;
+                    }　*/
+                    //范围限定二　
+                    moveX=Math.min(maxX, Math.max(0,moveX));
+                    
+                    moveY=Math.min(maxY, Math.max(0,moveY));
+                    box.style.left = moveX + "px";　　
+                    box.style.top = moveY + "px";　　　　　　　　　　
+                } else {
+                    return;　　　　　　　　　　
+                }
+
+            }
+
+            document.onmouseup = function() {
+                isDrop = false; //设置为false不可移动
+            }
+
+
+  }
 </script>
 
 </html>
