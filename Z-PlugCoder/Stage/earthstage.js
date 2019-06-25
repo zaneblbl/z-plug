@@ -15,6 +15,7 @@ function App() {
     let width, height;
     let planet;
     let mainstage;
+
     init();
   
     function init() {
@@ -111,14 +112,14 @@ function App() {
         dispV(p);
         if (vNoise(p, noiseF) == noiseWaterLevel) continue;
         if (random() > 0.3) {
-          const tsize = rnd(5, 15);
+          const tsize = rnd(5, 12);
           const bsize = tsize * rnd(0.5, 0.7);
           const vn2 = vNoise(p, 0.01);
           obj = createTree(tsize, bsize, 0x764114, cscale(vn2).hex());
           obj.position.set(p.x, p.y, p.z);
           obj.lookAt(0, 0, 0);
         } else {
-          obj = createRock(rnd(2, 4));
+          obj = createRock(rnd(2, 8));
           obj.position.set(p.x, p.y, p.z);
         }
         objects.push(obj);

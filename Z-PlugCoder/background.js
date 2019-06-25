@@ -42,4 +42,3 @@ function background_ajax(type,url,params) {
     });
 }
 
-
