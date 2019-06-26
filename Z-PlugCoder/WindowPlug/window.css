@@ -75,10 +75,16 @@ div.plug_window_temp{
     font-family: '黑体';
     right:50px;
     bottom:50px;
+    background-color:#a3a3a39d;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
-div.plug_window_temp span{
-    top:50%;
-    left:50%;
+div.plug_window_temp .window_wendu{
+    top:60%;
+    left:58%;
     position: absolute;
     transform: translate(-50%,-50%);
     -webkit-transform: translate(-50%,-50%);
@@ -92,21 +98,84 @@ div.plug_window_temp span{
     color: rgb(255, 81, 58);
     text-shadow: 0 0 5px #fefcc9, 5px -5px 10px #feec85, -10px -10px 20px #ffae34, 10px -10px 30px #ec760c, -10px -10px 40px #cd4606;
 }
-div.plug_window_temp span::before{
-    content:attr(data_city);
-    font-family: '黑体';
-    font-size: 14px;
-    position: relative;
-    bottom:0;
-    left:0;
-    display: inline-block;
+
+div.plug_window_temp .window_city{
+    top:33%;
+    left:50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    text-transform: uppercase;
+    font-family: "League-Gothic", Courier;
+    user-select: none;
+    -moz-user-select:none;/*火狐*/
+    -webkit-user-select:none;/*webkit浏览器*/
+    -ms-user-select:none;/*IE10*/
+    -khtml-user-select:none;/*早期浏览器*/
 }
 
 div.plug_window_temp img{
     display: inline-block;
     width: 40px;
     height:auto;
-    right:0;
-    top:0;
-    position: relative;
+    left:12%;
+    top:18%;
+    position: absolute;
 }
+
+.window_small_font{
+    color: rgb(255, 81, 58);
+    font-family: '黑体';
+    font-size: 14px;
+    position: absolute;
+    display: inline-block;
+}
+div.plug_window_temp .window_date{
+    bottom:3px;
+    left:4px;
+}
+
+div.plug_window_temp .window_high{
+    top:3px;
+    right:4px;
+}
+
+div.plug_window_temp .window_low{
+    bottom:3px;
+    right:4px;
+}
+
+div.plug_window_temp .window_fengli{
+    top:3px;
+    left:4px;
+
+}
+
+
+/* div.plug_window_temp .window_change{
+    top:50%;
+    right:4px;
+    transform: translate(0,-50%);
+    -webkit-transform: translate(0,-50%);
+    -moz-transform: translate(0,-50%);
+    -ms-transform: translate(0,-50%);
+    -o-transform: translate(0,-50%);
+    background-color: rgba(204, 107, 94, 0.404);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    padding:8px;
+    color:rgb(219, 198, 198);
+    font-size:20px;
+    font-weight: 900;
+}
+div.plug_window_temp .window_change:hover{
+    cursor: pointer;
+    background-color: rgba(134, 76, 68, 0.438);
+} */
+

@@ -2,6 +2,7 @@
 const window_url = 'http://wthrcdn.etouch.cn/weather_mini?city=';
 const city = '杭州';
 
+//中雨、大雨、小雨、雷暴、晴天、多云
 let window_icon = [{
         style: "中雨",
         icon: "/Resources/bigrain.png",
@@ -38,6 +39,7 @@ show_window_data(city);
 
 //展示天气信息
 function show_window_data(city) {
+
     get_window_data(city).then((ret) => {
         if (ret) {
             ret = JSON.parse(ret);
@@ -45,6 +47,7 @@ function show_window_data(city) {
                 data,
                 status
             } = ret;
+
             if (status == 1000) {
                 let {
                     city,
@@ -52,23 +55,29 @@ function show_window_data(city) {
                     ganmao,
                     wendu
                 } = data;
-                //温度天气显示
+
+                //温度天气dom显示
                 let temp = document.createElement('div');
                 temp.id = 'temp';
                 temp.classList.add('plug_window_temp');
                 temp.innerHTML = `<div>
                                     <img src='${matching_icon(forecast[0].type,window_icon)}' title='${forecast[0].type}' />
-                                    <span title=${ganmao} data_city='${city}'>${wendu}℃</span>
+                                    <span class='window_small_font window_city' id='window_city' contenteditable='false'>${city}</span>
+                                    <span class='window_wendu' title=${ganmao} >${wendu}℃</span>
+                                    <span class='window_small_font window_date'>${forecast[0].date}</span>
+                                    <span class='window_small_font window_high'>${forecast[0].high}</span>
+                                    <span class='window_small_font window_low'>${forecast[0].low}</span>
+                                    <span class='window_small_font window_fengli'>
+                                    ${regex_fengli(forecast[0].fengxiang,forecast[0].fengli)}
+                                    </span>
                                 </div>`;
                 window.document.body.appendChild(temp);
 
                 let movetarget = document.getElementById('temp');
                 stage_move(movetarget);
+                city_change();
             }
-            // let showdiv=`<div class='plug_window_main'><span class='plug_window_city'>${city}</span></div>`;
-            // let div=document.createElement('div');
-            // div.innerHTML=showdiv;
-            // maindiv.appendChild(div);
+
         }
     }, (error) => {
         console.log(error);
@@ -88,11 +97,17 @@ function matching_icon(type, window_icon) {
                 return window_icon[2].base64;
             } else if (type.indexOf('晴') != -1 && type.indexOf('到') != -1) {
                 return window_icon[5].base64;
-            } else {
-                return '';
             }
         }
     }
+}
+
+//风力风向正则
+function regex_fengli(fengxiang, fengli) {
+    let result = fengli;
+    let pattern = /(?<=<!\[CDATA\[).+(?=\]\]>)/g;
+    result = fengli.match(pattern);
+    return fengxiang + " " + result;
 }
 
 //获取天气信息
@@ -116,6 +131,40 @@ function get_window_data(city) {
     });
 }
 
+//改变城市
+function city_change() {
+    let window_city = document.getElementById('window_city');
+
+    window_city.addEventListener('click', function () {
+        //span 内容可编辑
+        window_city.setAttribute('contenteditable', 'true');
+    });
+    //失去焦点事件
+    window_city.addEventListener('blur', function () {
+        reget_temp(window_city);
+        window_city.setAttribute('contenteditable', 'false');
+    });
+    //回车事件
+    window_city.addEventListener('keydown', function (e) {
+        e = e || window.event;
+        if (e.keyCode === 13) {
+            reget_temp(window_city);
+            window_city.setAttribute('contenteditable', 'false');
+        }
+
+    });
+}
+//改变城市，重新获取数据
+function reget_temp(window_city) {
+    try{
+        let temp = document.getElementById('temp');
+        if (temp) {
+            window.document.body.removeChild(temp);
+            show_window_data(window_city.innerText);
+        }
+    }catch(e){}
+}
+
 //移动
 function stage_move(target) {
     var box = target; //获取元素
@@ -127,7 +176,6 @@ function stage_move(target) {
         y = e.clientY - box.offsetTop;
         isDrop = true; //设为true表示可以移动
     }
-
     document.onmousemove = function (e) {
         //是否为可移动状态                　　　　　　　　　　　 　　　　　　　
         if (isDrop) {
@@ -137,7 +185,6 @@ function stage_move(target) {
 
             var maxX = document.documentElement.clientWidth - box.offsetWidth;
             var maxY = document.documentElement.clientHeight - box.offsetHeight;
-
             //范围限定  当移动的距离最小时取最大  移动的距离最大时取最小
             //范围限定一
             /*if(moveX < 0) {
@@ -160,12 +207,8 @@ function stage_move(target) {
         } else {
             return;
         }
-
     }
-
     document.onmouseup = function () {
         isDrop = false; //设置为false不可移动
     }
-
-
 }
