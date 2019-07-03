@@ -97,6 +97,8 @@ function matching_icon(type, window_icon) {
                 return window_icon[2].base64;
             } else if (type.indexOf('晴') != -1 && type.indexOf('到') != -1) {
                 return window_icon[5].base64;
+            }else if (type.indexOf('阴')){
+                return window_icon[2].base64;
             }
         }
     }
