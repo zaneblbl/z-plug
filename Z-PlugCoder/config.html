@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>z-plug配置页面</title>
 </head>
+<style>
+    #test{
+        width:500px;
+        height: 500px;
+        overflow: auto;
+    }
+</style>
 <body>
-    <h2>lightclose color:</h2>
+    <div class="plug_book_mark">
+        <span>UserName:</span><input type="text" value="zaneblbl" id="username">
+        <span>Access Token:</span><input type="text" value="f7524a1889d0bb9847d15201b4111b166b2194b8" id="access_token">
+        <span>Path:</span><input type="text" value="BookMark/bookmarks.json" id="path">
+        <span>Save Message?</span><input type="radio" name="isSave" value="yes" checked>yes<input type="radio" name="isSave" value="no">no
+        <input type="button" value="Save" id="save_btn">
+        <input type="button" value="Upload" id="upload_btn">
+        <input type="button" value="Download" id="download_btn">
+        <span id='show_msg'></span>
+    </div>
 </body>
+<!-- 书签页配置js -->
+<script src="./BookMark/bookMark.js"></script>
+
 </html>

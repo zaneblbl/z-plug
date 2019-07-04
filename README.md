@@ -1,13 +1,28 @@
 # Chrome 扩展插件
 ## TranslatePlug
-翻译功能
+```
+    翻译功能
+    选中文字进行翻译
+```
 ## WindowPlug
-天气功能
+```
+    天气功能
+```
 ## Sprite
 显示精灵
 ## LightClose
-关灯
+关灯功能
+## BookMark
+书签同步功能
+```
+同步书签到github
+```
 
+## background.js
+```
+    1.ajax请求，无跨域限制
+    2.选中文字右键百度搜索功能
+```
 ## Stage
 3D地球场景
 ### three.min.js

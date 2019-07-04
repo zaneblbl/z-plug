@@ -27,6 +27,7 @@
         "storage",
         "notifications",
         "tabs",
+        "bookmarks",
         "*://*/*"
     ],
     "icons": {
