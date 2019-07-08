@@ -1,0 +1,39 @@
+.plug_book_mark{
+    width:300px;
+    height:180px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.plug_book_mark .title span{
+    display: inline-block;
+    padding-bottom:10px;
+
+}
+.plug_book_mark .content{
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap:wrap;
+    border: 1px solid rgb(129, 129, 129);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.plug_book_mark .content .item{
+    display: inline-block;
+    width:100%;
+    height:auto;
+    padding:5px;
+    
+}
+
+.plug_book_mark .content .item span{
+    margin-right:5px;
+}
+
+/* .plug_book_mark .item input[type="text"]{
+    width:220px;
+} */
