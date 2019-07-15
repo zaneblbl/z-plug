@@ -37,58 +37,62 @@ downloadBtn.addEventListener("click", function () {
     get_github_content(userName.value, accessToken.value, path.value).then((data) => {
         marksobj = Base64.decode(JSON.parse(data).content.toString());
         if (marksobj) {
-            // 移除根目录书签,并重新下载新的书签列表
-            // var remove = function (id) {
-            //     chrome.bookmarks.getChildren(id, function (marklist) {
-            //         // 循环删除除id为1,2的书签列表
-            //         for (let l in marklist) {
-            //             if (marklist[l].id === '1' || marklist[l].id === '2') {
-            //                 remove(marklist[l].id);
-            //             } else {
-            //                 chrome.bookmarks.removeTree(marklist[l].id, function () {});
-            //             }
-            //         }
-            //     });
-
-            // }
-            //循环添加
-            var createlist = function (marklist, parentId) {
-                for (let m in marklist) {
-                    //父节点
-                    marklist[m].parentId = parentId;
-                    //id=1和id=2为固定不可更改书签
-                    if (marklist[m].id === '1' || marklist[m].id === '2') {
-                        createlist(marklist[m].children, marklist[m].id);
-                    } else {
-                        //删除不必要的，书签id等会自动添加
-                        if (marklist[m].dateAdded) delete marklist[m].dateAdded;
-                        if (marklist[m].id) delete marklist[m].id;
-                        if (marklist[m].dateGroupModified) delete marklist[m].dateGroupModified;
-                        //存在文件夹时，递归调用
-                        if (marklist[m].children) {
-                            let children = marklist[m].children;
-                            delete marklist[m].children;
-                            chrome.bookmarks.create(marklist[m], function (msg) {
-                                createlist(children, msg.id)
-                            });
-                        } else {
-                            chrome.bookmarks.create(marklist[m]);
-
-                        }
-                    }
-                }
-            }
             // 获取根书签(id=0)的书签栏(id=1)列表（其他书签id=2）
             let marklist = JSON.parse(marksobj).find(function (x) {
                 return x.id === '0'
             }).children;
-            createlist(marklist, '0');
-            showMsg.innerText = 'DownLoad Success!';
+
+            remove('0');
+            setTimeout(() => {
+                createlist(marklist, '0');
+            }, 0);
+             showMsg.innerText = 'DownLoad Success!';
 
         }
     }, (error) => {});
 });
 
+// 移除根目录书签,并重新下载新的书签列表
+function remove(id) {
+     chrome.bookmarks.getChildren(id, function (marklist) {
+        // 循环删除除id为1,2的书签列表
+        for (let l in marklist) {
+            if (marklist[l].id === '1' || marklist[l].id === '2') {
+                remove(marklist[l].id);
+            } else {
+                chrome.bookmarks.removeTree(marklist[l].id, function () {
+                });
+            }
+        }
+    });
+}
+
+//循环添加
+function createlist(marklist, parentId) {
+    for (let m in marklist) {
+        //父节点
+        marklist[m].parentId = parentId;
+        //id=1和id=2为固定不可更改书签
+        if (marklist[m].id === '1' || marklist[m].id === '2') {
+            createlist(marklist[m].children, marklist[m].id);
+        } else {
+            //删除不必要的，书签id等会自动添加
+            if (marklist[m].dateAdded) delete marklist[m].dateAdded;
+            if (marklist[m].id) delete marklist[m].id;
+            if (marklist[m].dateGroupModified) delete marklist[m].dateGroupModified;
+            //存在文件夹时，递归调用
+            if (marklist[m].children) {
+                let children = marklist[m].children;
+                delete marklist[m].children;
+                chrome.bookmarks.create(marklist[m], function (msg) {
+                    createlist(children, msg.id)
+                });
+            } else {
+                chrome.bookmarks.create(marklist[m]);
+            }
+        }
+    }
+}
 
 /**
  * 连接github,更新书签

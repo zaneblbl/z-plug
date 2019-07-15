@@ -14,7 +14,6 @@ chrome.extension.onMessage.addListener(function (objRequest, _, sendResponse) {
     });
     //由于需要异步调用sendResponse，所以需要加上return true，通知sendResponse函数等待调用
     return true;
-
 });
 function background_ajax(type, url, params) {
     return new Promise((resolve, reject) => {

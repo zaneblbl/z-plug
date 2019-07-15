@@ -1,6 +1,6 @@
+let color='rgba(0,0,0,0.1)';
 
 window.onload=function(){
-    let color='rgba(0,0,0,0.1)';
     let mask = create_mask(color);
     window.document.body.appendChild(mask);
 }    
