@@ -11,6 +11,7 @@ var isSave = 'no';
 var showMsg = document.getElementById('show_msg');
 read_msg();
 
+
 /**
  * 保存事件
  */
@@ -28,6 +29,7 @@ uploadBtn.addEventListener("click", function () {
         update_github_marks(userName.value, accessToken.value, path.value, marklist);
     });
 });
+
 /**
  * 下载事件
  */
