@@ -43,9 +43,9 @@ if (isPhone() == 'pc') {
 function isPhone() {
     var u = navigator.userAgent
     var ua = u.toLowerCase()
-    if (/iphone|ipad|ipod/.test(ua)) { // iOS 系统 ->  跳AppStore下载地址
+    if (/iphone|ipad|ipod/.test(ua)) { // iOS 系统 
         return 'ios'
-    } else if (/android/.test(ua)) { // 安卓系统 -> 跳安卓端下载地址
+    } else if (/android/.test(ua)) { // 安卓系统
         return 'android'
     } else {
         return 'pc'
