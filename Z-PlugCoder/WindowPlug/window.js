@@ -4,42 +4,6 @@ let city = '杭州';
 if (isPhone() == 'pc') {
     show_window_data(city);
 }
-
-/******* */
-// var config__window__saveBtn=document.getElementById('config__window__saveBtn');
-
-// function saveConfig(){
-//     let config__window__backImg=document.getElementById('config__window__backImg');
-//     let config__window__fontColor=document.getElementById('config__window__fontColor');
-//     chrome.storage.sync.set({
-//         config__window__backImg: config__window__backImg.value,
-//         config__window__fontColor: config__window__fontColor.value,
-//     }, function () {
-//         showMsg.innerText = 'save success!';
-//     });
-// }
-
-// function getConfig(){
-//     chrome.storage.sync.get({
-//         config__window__backImg: '',
-//         config__window__fontColor: '',
-//     }, function (items) {
-//         let target=document.getElementsByClassName('window_background')[0];
-//         if(items.config__window__backImg){
-//             target.style.backgroundImage=items.config__window__backImg;
-//         }
-//         if(items.config__window__fontColor){
-            
-//         }
-
-//     });
-// }
-// console.log(config__window__saveBtn);
-
-// config__window__saveBtn.addEventListener("click", function () {
-//     saveConfig();
-// });
-/***************** */
 function isPhone() {
     var u = navigator.userAgent
     var ua = u.toLowerCase()
