@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+   //绑定监听事件
+// function addEventBack(){
+//   	 pushHistory(); 
+//   	 window.addEventListener("popstate",addBackKey, false); 
+//    	function pushHistory() { 
+//        	var state = { 
+//           	 title: "title", 
+//           	 url: "#"
+//        	}; 
+//        window.history.pushState(state, "title", "#jjjj"); 
+//   	 }
+// }
+// //解除返回键的监听
+// function removeEventBack(){
+//     window.removeEventListener("popstate",addBackKey, false); 
+// }
+
+
+// if(window.history && window.history.pushState) {
+// 	window.addEventListener('popstate', function() {
+// 		var hashLocation = location.hash;
+// 		var hashSplit = hashLocation.split("#!/");
+// 		var hashName = hashSplit[1];
+// 		if(hashName !== '') {
+// 			var hash = window.location.hash;
+// 			if(hash === '') {
+// 				alert("你点击了返回键");
+// 			}
+// 		}
+// 	});
+// 	window.history.pushState('forward', null, './#forward');
+// }
+
+history.pushState(null, null, location.href);
+window.addEventListener('popstate', function(event) {
+    history.pushState(null, null, location.href );
+    //此处加入回退时你要执行的代码
+    alert('tankuang')
+}); 
+
+</script>
+</html>
