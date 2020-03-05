@@ -47,11 +47,8 @@
             "./Sprite/sprite.css"
         ],
         "js": [
-
-            "./Sprite/sprite.js",
-            "./TranslatePlug/translate.js",
-            "./WindowPlug/window.js",
-            "./LightClose/LightClose.js"
+ 
+            "./dist/bundle.js"
         ],
         "run_at": "document_end"
     }]
