@@ -2,10 +2,13 @@ const path = require('path')
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 module.exports = {
-  entry: './Z-PlugCoder/WindowPlug/window.js',
+  entry: {
+    main: ['./Z-PlugCoder/WindowPlug/window.js', './Z-PlugCoder/TranslatePlug/translate.js', ],
+    config: ['./Z-PlugCoder/BookMark/bookMark.js', './Z-PlugCoder/Config/config.js']
+  },
   output: {
     path: path.resolve(__dirname, './Z-PlugCoder/dist'), // 必须使用绝对地址，输出文件夹
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: 'build/'
   },
   module: {
@@ -45,7 +48,7 @@ module.exports = {
     ]
   },
   // 插件列表
-  plugins:[
+  plugins: [
     new ExtractTextPlugin("css/[name].[hash].css")
   ]
 }

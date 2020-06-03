@@ -47,8 +47,7 @@
             "./Sprite/sprite.css"
         ],
         "js": [
- 
-            "./dist/bundle.js"
+            "./dist/main.js"
         ],
         "run_at": "document_end"
     }]
