@@ -3,6 +3,17 @@
 import common from '../Common/common'
 const window_url = 'http://wthrcdn.etouch.cn/weather_mini?city=';
 let city = '杭州';
+let config__window__backImg=``
+let config__window__foreColor=``
+
+chrome.storage.sync.get({
+    config__window__backImg: '',
+    config__window__foreColor:''
+}, function (items) {
+    config__window__backImg = items.config__window__backImg;
+    config__window__foreColor=items.config__window__foreColor;
+});
+
 if (isPhone() == 'pc') {
     show_window_data(city);
 }
@@ -40,14 +51,14 @@ function show_window_data(city) {
                 temp.id = 'z_temp';
                 temp.classList.add('plug_window_temp');
                 temp.innerHTML = `<div >
-                <div class='window_background'></div>
+                <div class='window_background' style="background-image:url('${config__window__backImg}')"></div>
                                     <img src='${matching_icon(forecast[0].type,window_icon)}' title='${forecast[0].type}' />
-                                    <span class='window_small_font window_city' id='window_city' contenteditable='false'>${city}</span>
-                                    <span class='window_wendu' title=${ganmao} >${wendu}℃</span>
-                                    <span class='window_small_font window_date'>${forecast[0].date}</span>
-                                    <span class='window_small_font window_high'>${forecast[0].high}</span>
-                                    <span class='window_small_font window_low'>${forecast[0].low}</span>
-                                    <span class='window_small_font window_fengli'>
+                                    <span class='window_small_font window_city' id='window_city' contenteditable='false' style="color:${config__window__foreColor}">${city}</span>
+                                    <span class='window_wendu' title=${ganmao} style="color:${config__window__foreColor}">${wendu}℃</span>
+                                    <span class='window_small_font window_date' style="color:${config__window__foreColor}">${forecast[0].date}</span>
+                                    <span class='window_small_font window_high' style="color:${config__window__foreColor}">${forecast[0].high}</span>
+                                    <span class='window_small_font window_low' style="color:${config__window__foreColor}">${forecast[0].low}</span>
+                                    <span class='window_small_font window_fengli' style="color:${config__window__foreColor}">
                                     ${regex_fengli(forecast[0].fengxiang,forecast[0].fengli)}
                                     </span>
                                 </div>`;
