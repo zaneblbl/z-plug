@@ -1,5 +1,6 @@
 // const maindiv=document.getElementById('plug_main');
 // require('./window.css')
+import common from '../Common/common'
 const window_url = 'http://wthrcdn.etouch.cn/weather_mini?city=';
 let city = '杭州';
 if (isPhone() == 'pc') {
@@ -36,7 +37,7 @@ function show_window_data(city) {
 
                 //温度天气dom显示
                 let temp = document.createElement('div');
-                temp.id = 'temp';
+                temp.id = 'z_temp';
                 temp.classList.add('plug_window_temp');
                 temp.innerHTML = `<div >
                 <div class='window_background'></div>
@@ -52,8 +53,8 @@ function show_window_data(city) {
                                 </div>`;
                 window.document.body.appendChild(temp);
 
-                let movetarget = document.getElementById('temp');
-                stage_move(movetarget);
+                let movetarget = document.getElementById('z_temp');
+                common.stage_move(movetarget);
                 city_change();
             }
 

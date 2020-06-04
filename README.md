@@ -12,6 +12,9 @@
     天气功能
 ```
 ## Sprite
+ # bird
+    几只飞来飞去的鸟
+    
 显示精灵
 ## LightClose
 关灯功能

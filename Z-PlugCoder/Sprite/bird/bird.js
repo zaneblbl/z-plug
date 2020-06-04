@@ -1,8 +1,10 @@
-require('./bird.css')
+import common from '../../Common/common.js'
 
 let z_bird = {
   init() {
     this.creatDom()
+    let movetarget=document.getElementById('z_bird')
+    common.stage_move(movetarget)
   },
   creatDom() {
     let dom = `<div class="bird_contain">
