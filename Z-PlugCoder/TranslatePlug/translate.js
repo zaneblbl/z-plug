@@ -1,3 +1,4 @@
+// require('./translate.css')
 document.addEventListener('mouseup', function (e) {
     //获取鼠标的位置
     e = e || window.event;

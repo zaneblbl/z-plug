@@ -1,4 +1,5 @@
 // const maindiv=document.getElementById('plug_main');
+// require('./window.css')
 const window_url = 'http://wthrcdn.etouch.cn/weather_mini?city=';
 let city = '杭州';
 if (isPhone() == 'pc') {

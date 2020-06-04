@@ -1,0 +1,202 @@
+.nO9rgCjp9OeHKnFge7krp {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 1px solid;
+    top: 30px;
+    right: 10px;
+    z-index: 50;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    animation: _2aQgBkSv6VZBYVHqJ6AROZ 0.5s;
+    -webkit-animation: _2aQgBkSv6VZBYVHqJ6AROZ 0.5s;
+}
+
+@keyframes _2aQgBkSv6VZBYVHqJ6AROZ {
+    0% {
+        width: 0;
+        height: 0;
+        top: 0;
+        right: 0;
+        font-size:0;
+    }
+
+    100% {
+        width: 50px;
+        height: 50px;
+        border: 1px solid;
+        top: 30px;
+        right: 10px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+    }
+}
+
+.nO9rgCjp9OeHKnFge7krp .RQ1ErmWZu8XOnYqQx6tQ5 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    animation: _1SMpu3ggtbRgquwTv1I6St 0.5s;
+    -webkit-animation: _1SMpu3ggtbRgquwTv1I6St 0.5s;
+}
+
+@keyframes _1SMpu3ggtbRgquwTv1I6St{
+    0%{
+        font-size:0;
+    }
+    100%{
+        font-size:14px;
+    }
+}
+
+div._2Ns-ZK5aZAzzZt4boJBjbc{
+    width:200px;
+    height:100px;
+    position: fixed;
+    font-family: '黑体';
+    right:50px;
+    bottom:50px;
+    background-color:#a3a3a39d;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+div._2Ns-ZK5aZAzzZt4boJBjbc ._25LinaRzcIzv-t2Be5fW7j{
+    top:60%;
+    left:58%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+
+    /* font-family: "League-Gothic", Courier; */
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #fcd15d;
+    text-shadow: 0 0 5px #fefcc9, 5px -5px 10px #feec85, -10px -10px 20px #ffae34, 10px -10px 30px #ec760c, -10px -10px 40px #cd4606;
+}
+
+div._2Ns-ZK5aZAzzZt4boJBjbc ._34MhFbGZCad8wt6u8qpHG6{
+    top:33%;
+    left:50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    text-transform: uppercase;
+    font-family: "League-Gothic", Courier;
+    user-select: none;
+    -moz-user-select:none;/*火狐*/
+    -webkit-user-select:none;/*webkit浏览器*/
+    -ms-user-select:none;/*IE10*/
+    -khtml-user-select:none;/*早期浏览器*/
+}
+
+div._2Ns-ZK5aZAzzZt4boJBjbc img{
+    display: inline-block;
+    width: 40px;
+    height:auto;
+    left:12%;
+    top:18%;
+    position: absolute;
+}
+
+._2Atykz-rui0SU68OuzQ8SQ{
+    color: #fcd15d;
+    font-family: '黑体';
+    font-size: 14px;
+    position: absolute;
+    display: inline-block;
+}
+div._2Ns-ZK5aZAzzZt4boJBjbc .nxLFqyHHtxuPw9vgP-TE3{
+    bottom:3px;
+    left:4px;
+}
+
+div._2Ns-ZK5aZAzzZt4boJBjbc ._3zxKFhhkXE2lLuhH_gHhcH{
+    top:3px;
+    right:4px;
+}
+
+div._2Ns-ZK5aZAzzZt4boJBjbc ._1y69iQIY2DoKL8cBttIFtR{
+    bottom:3px;
+    right:4px;
+}
+
+div._2Ns-ZK5aZAzzZt4boJBjbc ._21QjZBViTUKMLZQ-u-VdhA{
+    top:3px;
+    left:4px;
+
+}
+
+div._2WtjRkVnoGqE2nUalf9OBE{
+    width:100%;
+    height:100%;
+    background-image: url('http://img.netbian.com/file/2019/0824/2910976948f03393cb4d6b86757fc0a7.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    opacity: 1;
+    border-radius: 5px;
+}
+
+
+/* 气泡内容区*/
+._2hUezssVVLnVx9dgt4vNH8{
+    border:1px solid ;
+    position: fixed;
+    z-index:100;
+    border-radius: 14px;
+    -webkit-border-radius: 14px;
+    -moz-border-radius: 14px;
+    -ms-border-radius: 14px;
+    -o-border-radius: 14px;
+    padding: 10px;
+    background-color: bisque;
+}
+/* 气泡小三角 */
+._2hUezssVVLnVx9dgt4vNH8::before {
+    content: ' ';
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    background-color: bisque;
+    border: 1px black;
+    border-style: solid  none none solid;
+    border-width: 1px;
+    display: block;
+    position: absolute;
+    top: -6px;
+    left: 12px;
+    z-index: 101;
+}

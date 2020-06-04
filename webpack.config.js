@@ -3,7 +3,7 @@ const path = require('path')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 module.exports = {
   entry: {
-    main: ['./Z-PlugCoder/WindowPlug/window.js', './Z-PlugCoder/TranslatePlug/translate.js', ],
+    main: ['./Z-PlugCoder/WindowPlug/window.js', './Z-PlugCoder/TranslatePlug/translate.js','./Z-PlugCoder/Sprite/bird/bird.js'],
     config: ['./Z-PlugCoder/BookMark/bookMark.js', './Z-PlugCoder/Config/config.js']
   },
   output: {

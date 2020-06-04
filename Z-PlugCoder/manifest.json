@@ -41,10 +41,11 @@
     "content_scripts": [{
         "matches": ["*://*/*"],
         "css": [
-            "./Main/main.css",
             "./TranslatePlug/translate.css",
             "./WindowPlug/window.css",
-            "./Sprite/sprite.css"
+            "./Sprite/bird/bird.css",
+            "./dist/css/main.2630be652bdfdd66c149.css",
+            "./dist/css/main.8789628500ac8cf6563b.css"
         ],
         "js": [
             "./dist/main.js"
