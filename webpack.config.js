@@ -1,10 +1,11 @@
 const path = require('path')
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+
 module.exports = {
   entry: {
-    main: ['./Z-PlugCoder/WindowPlug/window.js', './Z-PlugCoder/TranslatePlug/translate.js','./Z-PlugCoder/Sprite/bird/bird.js'],
-    config: ['./Z-PlugCoder/BookMark/bookMark.js', './Z-PlugCoder/Config/config.js']
+    main: ['./Z-PlugCoder/src/WindowPlug/window.js', './Z-PlugCoder/src/TranslatePlug/translate.js','./Z-PlugCoder/src/Sprite/bird/bird.js'],
+    config: ['./Z-PlugCoder/src/BookMark/bookMark.js', './Z-PlugCoder/Config/config.js']
   },
   output: {
     path: path.resolve(__dirname, './Z-PlugCoder/dist'), // 必须使用绝对地址，输出文件夹
@@ -20,18 +21,22 @@ module.exports = {
         exclude: /node_modules/
       },
       //css loader
+      // {
+      //   test: /\.css$/,
+      //   loader: ExtractTextPlugin.extract({
+      //     fallback: 'style-loader',
+      //     use: [{
+      //       loader: 'css-loader',
+      //       options: {
+      //         modules: true
+      //       }
+      //     }]
+      //   })
+
+      // },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
-            loader: 'css-loader',
-            options: {
-              modules: true
-            }
-          }]
-        })
-
+        loader: 'style-loader!css-loader'
       },
       // 图片格式正则
       {

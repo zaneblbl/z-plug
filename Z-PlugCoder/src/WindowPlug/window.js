@@ -1,6 +1,6 @@
 // const maindiv=document.getElementById('plug_main');
-// require('./window.css')
-import common from '../Common/common'
+require('./window.css')
+import common from '../../Common/common'
 const window_url = 'http://wthrcdn.etouch.cn/weather_mini?city=';
 let city = '杭州';
 let config__window__backImg=``

@@ -1,5 +1,5 @@
-import common from '../../Common/common.js'
-
+import common from '../../../Common/common.js'
+require('./bird.css')
 let z_bird = {
   init() {
     this.creatDom()
