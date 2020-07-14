@@ -2,6 +2,8 @@
 ## webpack打包 npm start 到Z-PlugCoder的dist文件下
 ## manifest.json 主配置
 
+## 避免样式污染，统一zPlug开头，BEM命名规范
+
 ## TranslatePlug
 ```
     翻译功能

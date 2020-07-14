@@ -1,0 +1,10 @@
+.zPlug__inputTranslate__mainIcon{
+  display: inline-block;
+  width:30px;
+  height:30px;
+  background: url('./Image/icon.png') center center no-repeat;
+  background-size: cover;
+  position: fixed;
+  right:0;
+  top:0;
+}

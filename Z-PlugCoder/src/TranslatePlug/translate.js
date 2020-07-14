@@ -1,4 +1,6 @@
 require('./translate.css')
+
+// 文本选择弹出翻译
 document.addEventListener('mouseup', function (e) {
     //获取鼠标的位置
     e = e || window.event;
