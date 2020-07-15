@@ -27,12 +27,13 @@
   // }
   // xhr.send()
   let code = getQueryVariable('code')
+  alert(code)
   if (code) {
-    chrome.storage.sync.set({
-      config__window__backImg: self.config__window__backImg.value,
-    }, function () {
+    // chrome.storage.sync.set({
+    //   config__window__backImg: self.config__window__backImg.value,
+    // }, function () {
 
-    });
+    // });
     alert(code)
   } else {
     window.location.href = url
