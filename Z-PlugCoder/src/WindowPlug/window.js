@@ -6,13 +6,16 @@ let city = '杭州';
 let config__window__backImg=``
 let config__window__foreColor=``
 
-chrome.storage.sync.get({
-    config__window__backImg: '',
-    config__window__foreColor:''
-}, function (items) {
-    config__window__backImg = items.config__window__backImg;
-    config__window__foreColor=items.config__window__foreColor;
-});
+if(chrome.storage){
+    chrome.storage.sync.get({
+        config__window__backImg: '',
+        config__window__foreColor:''
+    }, function (items) {
+        config__window__backImg = items.config__window__backImg;
+        config__window__foreColor=items.config__window__foreColor;
+    });
+}
+
 
 if (isPhone() == 'pc') {
     show_window_data(city);

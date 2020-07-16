@@ -11,6 +11,4 @@
 //     showIcon.classList.add('zPlug__inputTranslate__mainIcon')
 //   }
 // }
-console.log('erw');
-
 // inputTranslateBox.init()

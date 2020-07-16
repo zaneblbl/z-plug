@@ -18,27 +18,21 @@
   let requestToken = ``
   let url = `https://github.com/login/oauth/authorize?client_id=${clientID}`
 
-  // window.location.href = url
-  // xhr.open('get',url)
-  // xhr.onreadystatechange=function(){
-  //   if(xhr.status==200 && xhr.readyState==4){
-  //     console.log(xhr.responseText);
-  //   }
-  // }
-  // xhr.send()
   let code = getQueryVariable('code')
-  alert(code)
   if (code) {
-    // chrome.storage.sync.set({
-    //   config__window__backImg: self.config__window__backImg.value,
-    // }, function () {
+    if (chrome.storage) {
+      ajax('post','https://github.com/login/oauth/access_token',{client_id:clientID,client_secret:clientSecret,code:code}).then(res=>{
+          chrome.storage.sync.set({
+          github__login__code: code,
+        }, function () {
+          document.write('login success')
+        });
+      })
 
-    // });
-    alert(code)
+    }
   } else {
     window.location.href = url
   }
-
 
   function getQueryVariable(variable) {
     var query = window.location.search.substring(1)
@@ -51,6 +45,33 @@
     }
     return (false)
   }
+
+  function ajax(type, url, params) {
+        return new Promise((resolve, reject) => {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.status === 200 && xhr.readyState === 4) {
+                    // alert(xhr.responseText.toString());
+                    resolve(xhr.responseText);
+                }
+            };
+            if (type.toLowerCase() === 'get') {
+                xhr.open('get', url, true);
+                // xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.send();
+            } else if (type.toLowerCase() === 'post') {
+                xhr.open('post', url, true);
+                // xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.send(params);
+            } else if (type.toLowerCase() === 'put') {
+                xhr.open('put', url, true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send(JSON.stringify(params));
+            } else {
+                console.log('不支持的请求格式');
+            }
+        });
+    }
 </script>
 
 </html>

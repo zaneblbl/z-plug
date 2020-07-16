@@ -48,7 +48,7 @@ downloadBtn.addEventListener("click", function () {
             setTimeout(() => {
                 createlist(marklist, '0');
             }, 0);
-             showMsg.innerText = 'DownLoad Success!';
+            showMsg.innerText = 'DownLoad Success!';
 
         }
     }, (error) => {});
@@ -56,14 +56,13 @@ downloadBtn.addEventListener("click", function () {
 
 // 移除根目录书签,并重新下载新的书签列表
 function remove(id) {
-     chrome.bookmarks.getChildren(id, function (marklist) {
+    chrome.bookmarks.getChildren(id, function (marklist) {
         // 循环删除除id为1,2的书签列表
         for (let l in marklist) {
             if (marklist[l].id === '1' || marklist[l].id === '2') {
                 remove(marklist[l].id);
             } else {
-                chrome.bookmarks.removeTree(marklist[l].id, function () {
-                });
+                chrome.bookmarks.removeTree(marklist[l].id, function () {});
             }
         }
     });
@@ -167,23 +166,27 @@ function is_save(radios) {
 function save_msg(isSave) {
     // 保存配置数据
     if (isSave === 'yes') {
-        chrome.storage.sync.set({
-            userName: userName.value,
-            accessToken: accessToken.value,
-            path: path.value,
-            isSave: isSave
-        }, function () {
-            showMsg.innerText = 'save success!';
-        });
+        if (chrome.storage) {
+            chrome.storage.sync.set({
+                userName: userName.value,
+                accessToken: accessToken.value,
+                path: path.value,
+                isSave: isSave
+            }, function () {
+                showMsg.innerText = 'save success!';
+            });
+        }
     } else {
-        chrome.storage.sync.set({
-            userName: '',
-            accessToken: '',
-            path: '',
-            isSave: isSave
-        }, function () {
-            showMsg.innerText = 'save success!';
-        });
+        if (chrome.storage) {
+            chrome.storage.sync.set({
+                userName: '',
+                accessToken: '',
+                path: '',
+                isSave: isSave
+            }, function () {
+                showMsg.innerText = 'save success!';
+            });
+        }
     }
 }
 
@@ -192,23 +195,25 @@ function save_msg(isSave) {
  */
 function read_msg() {
     // 读取数据，第一个参数是指定要读取的key以及设置默认值
-    chrome.storage.sync.get({
-        userName: '',
-        accessToken: '',
-        path: '',
-        isSave: ''
-    }, function (items) {
-        userName.value = items.userName;
-        accessToken.value = items.accessToken;
-        path.value = items.path;
-        for (r in saveRadios) {
-            if (saveRadios[r].value === items.isSave) {
-                saveRadios[r].checked = true;
-                isSave = items.isSave;
+    if (chrome.storage) {
+        chrome.storage.sync.get({
+            userName: '',
+            accessToken: '',
+            path: '',
+            isSave: ''
+        }, function (items) {
+            userName.value = items.userName;
+            accessToken.value = items.accessToken;
+            path.value = items.path;
+            for (r in saveRadios) {
+                if (saveRadios[r].value === items.isSave) {
+                    saveRadios[r].checked = true;
+                    isSave = items.isSave;
+                }
             }
-        }
 
-    });
+        });
+    }
 }
 
 /**
