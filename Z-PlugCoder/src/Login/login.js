@@ -13,7 +13,7 @@ let login = {
   },
   loginListener() {
     window.addEventListener("message", function (e) {
-      console.log(e.data);
+      console.log(e);
 
       chrome.extension.sendMessage({
         'url': `https://github.com/login/oauth/access_token?client_id=${e.data.clientID}&client_secret=${e.data.clientSecret}&code=${e.data.code}`,
