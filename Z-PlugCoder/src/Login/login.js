@@ -30,7 +30,6 @@ let login = {
     
   },
   loginListener() {
-    console.log('++++++++++');
     window.removeEventListener("message",this.toLogin)
     window.addEventListener("message",this.toLogin, false);
   }

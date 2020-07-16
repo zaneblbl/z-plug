@@ -19,7 +19,7 @@
 
     let code = getQueryVariable('code')
     if (code) {
-      // console.log({clientID: clientID,clientSecret:clientSecret,code:code});
+      console.log({clientID: clientID,clientSecret:clientSecret,code:code});
       let param={'clientID': clientID,'clientSecret':clientSecret,'code':code}
       window.postMessage(param, '*');
 
