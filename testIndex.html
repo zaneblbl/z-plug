@@ -11,37 +11,6 @@
 <!-- <script src="./Z-PlugCoder/src/TranslatePlug/inputTranslate.js"></script> -->
 <script src="./Z-PlugCoder/dist/main.js"></script>
 <script>
-     let xhr = new XMLHttpRequest()
-    let clientID = `c92b731ae212fbc66088`
-    let clientSecret = `d3f4065441e8ed9d2d6a965af327348c570523ea`
-    let url = `https://github.com/login/oauth/authorize?client_id=${clientID}`
-    let code='eqqewwq'
-    function ajax(type, url, params) {
-        return new Promise((resolve, reject) => {
-          console.log(chrome);
-          
-          if(chrome.extension){
-            chrome.extension.sendMessage({
-                'url': url,
-                'type': type
-            }, function (ret) {
-                if (ret) {
-                    resolve(ret);
-                }
-            });
-          }
-        });
-    }
-
-    ajax('get', `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${code}`).then(res => {
-        console.log(res);
-        // if (chrome.storage) {
-        //   chrome.storage.sync.set({
-        //     access_token: res.data.access_token,
-        //   }, function () {
-        //     document.write('login success')
-        //   });
-        // }
-      })
+     window.postMessage({"test": '你好1！'}, '*');
 </script>
 </html>

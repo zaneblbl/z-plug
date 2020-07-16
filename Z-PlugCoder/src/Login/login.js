@@ -11,10 +11,7 @@ let login = {
 
     this.loginListener()
   },
-  loginListener() {
-    console.log('++++++++++');
-    
-    window.addEventListener("message", function (e) {
+  toLogin(e){
       console.log(e.data);
 
       // chrome.extension.sendMessage({
@@ -30,18 +27,12 @@ let login = {
       //     });
       //   }
       // });
-
-      // background_ajax('get', `https://github.com/login/oauth/access_token?client_id=${e.data.clientID}&client_secret=${e.data.clientSecret}&code=${e.data.code}`).then(res => {
-      //   console.log(res.data.access_token);
-      //   if (chrome.storage) {
-      //     chrome.storage.sync.set({
-      //       access_token: res.data.access_token,
-      //     }, function () {
-      //       document.write('login success')
-      //     });
-      //   }
-      // })
-    }, false);
+    
+  },
+  loginListener() {
+    console.log('++++++++++');
+    window.removeEventListener("message",this.toLogin)
+    window.addEventListener("message",this.toLogin, false);
   }
 }
 
