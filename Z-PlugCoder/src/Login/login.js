@@ -15,7 +15,7 @@ let login = {
         self.config__clientSecret = items.config__clientSecret;
 
         if (window.location.href.indexOf(`https://zaneblbl.github.io/z-plug`) != -1) {
-          self.loginListener()
+          self.loginListener(items.config__clientID,items.config__clientSecret)
         } else {
           let loginBtn = document.createElement('a')
           loginBtn.id = 'zPlug__login__btn'
@@ -45,9 +45,7 @@ let login = {
     });
 
   },
-  loginListener() {
-    let clientID = this.clientID
-    let clientSecret = this.clientSecret
+  loginListener(clientID,clientSecret) {
     let url = `https://github.com/login/oauth/authorize?client_id=${clientID}`
     let code = common.getQueryVariable('code')
     if (code) {
