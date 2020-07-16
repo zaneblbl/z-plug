@@ -20,8 +20,13 @@
 
   let code = getQueryVariable('code')
   if (code) {
+    console.log(code);
+      
     if (chrome.storage) {
+
       ajax('post','https://github.com/login/oauth/access_token',{client_id:clientID,client_secret:clientSecret,code:code}).then(res=>{
+        console.log(res);
+        
           chrome.storage.sync.set({
           github__login__code: code,
         }, function () {
