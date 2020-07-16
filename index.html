@@ -19,7 +19,8 @@
 
     let code = getQueryVariable('code')
     if (code) {
-      console.log({clientID: clientID,clientSecret:clientSecret,code:code});
+      console.log('22222222');
+      
       let param={'clientID': clientID,'clientSecret':clientSecret,'code':code}
       var customEvent = document.createEvent('Event');
       customEvent.initEvent('myCustomEvent', true, true);
