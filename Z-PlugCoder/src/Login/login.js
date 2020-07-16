@@ -8,7 +8,6 @@ let login={
     loginBtn.innerHTML=`<div>Login</div>`
     loginBtn.href=`https://zaneblbl.github.io/z-plug/`
     window.document.body.appendChild(loginBtn);
-
   }
 }
 

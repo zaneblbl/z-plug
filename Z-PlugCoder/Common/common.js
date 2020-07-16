@@ -45,6 +45,43 @@ let common = {
         document.onmouseup = function () {
             isDrop = false; //设置为false不可移动
         }
+    },
+    getQueryVariable(variable) {
+        var query = window.location.search.substring(1)
+        var vars = query.split('&')
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split('=')
+            if (pair[0] == variable) {
+                return pair[1]
+            }
+        }
+        return (false)
+    },
+    ajax(type, url, params) {
+        return new Promise((resolve, reject) => {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.status === 200 && xhr.readyState === 4) {
+                    // alert(xhr.responseText.toString());
+                    resolve(xhr.responseText);
+                }
+            };
+            if (type.toLowerCase() === 'get') {
+                xhr.open('get', url, true);
+                // xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.send();
+            } else if (type.toLowerCase() === 'post') {
+                xhr.open('post', url, true);
+                // xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.send(params);
+            } else if (type.toLowerCase() === 'put') {
+                xhr.open('put', url, true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send(JSON.stringify(params));
+            } else {
+                console.log('不支持的请求格式');
+            }
+        });
     }
 }
 

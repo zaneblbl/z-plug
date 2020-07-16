@@ -19,11 +19,7 @@
 
     let code = getQueryVariable('code')
     if (code) {
-      ajax('post', `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${code}`, {
-        client_id: clientID,
-        client_secret: clientSecret,
-        code: code
-      }).then(res => {
+      ajax('get', `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${code}`).then(res => {
         console.log(res.data.access_token);
         if (chrome.storage) {
           chrome.storage.sync.set({
@@ -50,27 +46,32 @@
         }
         return (false)
     }
-  //ajax封装
-  function ajax(type, url, params) {
-    return new Promise((resolve, reject) => {
-      try {
-        chrome.extension.sendMessage({
-          'url': url,
-          'type': type,
-          'params': params
-        }, function (ret) {
-          if (ret) {
-            resolve(ret);
-          }
+    function ajax(type, url, params) {
+        return new Promise((resolve, reject) => {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.status === 200 && xhr.readyState === 4) {
+                    // alert(xhr.responseText.toString());
+                    resolve(xhr.responseText);
+                }
+            };
+            if (type.toLowerCase() === 'get') {
+                xhr.open('get', url, true);
+                // xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.send();
+            } else if (type.toLowerCase() === 'post') {
+                xhr.open('post', url, true);
+                // xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.send(params);
+            } else if (type.toLowerCase() === 'put') {
+                xhr.open('put', url, true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send(JSON.stringify(params));
+            } else {
+                console.log('不支持的请求格式');
+            }
         });
-      } catch (e) {
-        reject(e)
-      } finally {
-
-      }
-    })
-
-  }
+    }
 </script>
 
 </html>
