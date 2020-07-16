@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+    <div id='myCustomEventDiv'></div>
 </body>
 <script>
      let xhr = new XMLHttpRequest()
@@ -21,7 +21,14 @@
     if (code) {
       console.log({clientID: clientID,clientSecret:clientSecret,code:code});
       let param={'clientID': clientID,'clientSecret':clientSecret,'code':code}
-      window.postMessage(param, '*');
+      var customEvent = document.createEvent('Event');
+      customEvent.initEvent('myCustomEvent', true, true);
+      function fireCustomEvent(data) {
+        hiddenDiv = document.getElementById('myCustomEventDiv');
+        hiddenDiv.innerText = data
+        hiddenDiv.dispatchEvent(customEvent);
+      }
+      fireCustomEvent(param);
 
     } else {
       window.location.href = url

@@ -30,8 +30,18 @@ let login = {
     
   },
   loginListener() {
-    window.removeEventListener("message",this.toLogin)
-    window.addEventListener("message",this.toLogin, false);
+    var hiddenDiv = document.getElementById('myCustomEventDiv');
+    if(!hiddenDiv) {
+      hiddenDiv = document.createElement('div');
+      hiddenDiv.style.display = 'none';
+      document.body.appendChild(hiddenDiv);
+    }
+    hiddenDiv.addEventListener('myCustomEvent', function() {
+      var eventData = document.getElementById('myCustomEventDiv').innerText;
+      console.log(eventData.code);
+    });
+    // window.removeEventListener("message",this.toLogin)
+    // window.addEventListener("message",this.toLogin, false);
   }
 }
 
