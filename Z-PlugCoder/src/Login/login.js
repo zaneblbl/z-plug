@@ -38,7 +38,7 @@ let login = {
     }
     hiddenDiv.addEventListener('myCustomEvent', function() {
       var eventData = document.getElementById('myCustomEventDiv').innerText;
-      console.log(eventData.code);
+      console.log(eventData);
     });
     // window.removeEventListener("message",this.toLogin)
     // window.addEventListener("message",this.toLogin, false);
