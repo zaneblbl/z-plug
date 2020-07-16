@@ -20,16 +20,18 @@
 
     let code = getQueryVariable('code')
     if (code) {
-      ajax('get', `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${code}`).then(res => {
-        console.log(res.data.access_token);
-        if (chrome.storage) {
-          chrome.storage.sync.set({
-            access_token: res.data.access_token,
-          }, function () {
-            document.write('login success')
-          });
-        }
-      })
+
+      window.postMessage({"test": '你好！'}, '*');
+      // ajax('get', `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${code}`).then(res => {
+      //   console.log(res.data.access_token);
+      //   if (chrome.storage) {
+      //     chrome.storage.sync.set({
+      //       access_token: res.data.access_token,
+      //     }, function () {
+      //       document.write('login success')
+      //     });
+      //   }
+      // })
 
     } else {
       window.location.href = url
