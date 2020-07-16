@@ -21,7 +21,7 @@
   let code = getQueryVariable('code')
   if (code) {
     console.log(code);
-    ajax('post', 'https://github.com/login/oauth/access_token', {
+    ajax('post', `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${code}`, {
       client_id: clientID,
       client_secret: clientSecret,
       code: code
