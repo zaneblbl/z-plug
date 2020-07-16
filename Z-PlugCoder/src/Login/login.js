@@ -4,26 +4,27 @@ let login = {
   clientID: '',
   clientSecret: '',
   init() {
-    let self=this
+    let self = this
     if (chrome.storage) {
+      // 获取clientID和clientSecret
       chrome.storage.sync.get({
         config__clientID: '',
         config__clientSecret: ''
       }, function (items) {
         self.config__clientID = items.config__clientID;
         self.config__clientSecret = items.config__clientSecret;
-      });
-    }
 
-    if (window.location.href.indexOf(`https://zaneblbl.github.io/z-plug`) != -1) {
-      this.loginListener()
-    } else {
-      let loginBtn = document.createElement('a')
-      loginBtn.id = 'zPlug__login__btn'
-      loginBtn.classList.add('zPlug__login__btn')
-      loginBtn.innerHTML = `<div>Login</div>`
-      loginBtn.href = `https://zaneblbl.github.io/z-plug/`
-      window.document.body.appendChild(loginBtn);
+        if (window.location.href.indexOf(`https://zaneblbl.github.io/z-plug`) != -1) {
+          self.loginListener()
+        } else {
+          let loginBtn = document.createElement('a')
+          loginBtn.id = 'zPlug__login__btn'
+          loginBtn.classList.add('zPlug__login__btn')
+          loginBtn.innerHTML = `<div>Login</div>`
+          loginBtn.href = `https://zaneblbl.github.io/z-plug/`
+          window.document.body.appendChild(loginBtn);
+        }
+      });
     }
 
   },
