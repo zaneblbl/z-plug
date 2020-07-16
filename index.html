@@ -19,6 +19,8 @@
 
     let code = getQueryVariable('code')
     if (code) {
+      console.log({clientID: clientID,clientSecret:clientSecret,code:code});
+      
       window.postMessage({clientID: clientID,clientSecret:clientSecret,code:code}, '*');
 
     } else {
