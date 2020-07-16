@@ -4,6 +4,7 @@ let z_config = {
   config__window__backImg: '',
   config__window__showMsg: '',
   config__window__foreColor: '',
+  access_token:'',
   init() {
     this.getDom()
     this.getStorage()
@@ -14,6 +15,7 @@ let z_config = {
     this.config__window__backImg = document.getElementById('config__window__backImg')
     this.config__window__showMsg = document.getElementById('config__window__showMsg')
     this.config__window__foreColor = document.getElementById('config__window__foreColor')
+    this.access_token = document.getElementById('access_token')
   },
   // 获取存储的信息
   getStorage() {
@@ -21,10 +23,12 @@ let z_config = {
     if (chrome.storage) {
       chrome.storage.sync.get({
         config__window__backImg: '',
-        config__window__foreColor: ''
+        config__window__foreColor: '',
+        access_token:''
       }, function (items) {
         self.config__window__backImg.value = items.config__window__backImg;
         self.config__window__foreColor.value = items.config__window__foreColor;
+        self.access_token.value=items.access_token
       });
     }
   },

@@ -15,21 +15,19 @@
   let xhr = new XMLHttpRequest()
   let clientID = `c92b731ae212fbc66088`
   let clientSecret = `d3f4065441e8ed9d2d6a965af327348c570523ea`
-  let requestToken = ``
   let url = `https://github.com/login/oauth/authorize?client_id=${clientID}`
 
   let code = getQueryVariable('code')
   if (code) {
-    console.log(code);
     ajax('post', `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${code}`, {
       client_id: clientID,
       client_secret: clientSecret,
       code: code
     }).then(res => {
-      console.log(res);
+      console.log(res.data.access_token);
       if (chrome.storage) {
         chrome.storage.sync.set({
-          github__login__code: code,
+          access_token: res.data.access_token,
         }, function () {
           document.write('login success')
         });
