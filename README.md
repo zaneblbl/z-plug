@@ -4,6 +4,9 @@
 
 ## 避免样式污染，统一zPlug开头，BEM命名规范
 
+## 最外层index.html作为github登录回调传回code码的页面，部署在GitHub上
+
+
 ## TranslatePlug
 ```
     翻译功能

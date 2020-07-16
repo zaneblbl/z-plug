@@ -15,10 +15,10 @@ read_msg();
 /**
  * 保存事件
  */
-saveBtn.addEventListener("click", function () {
-    isSave = is_save(saveRadios);
-    save_msg(isSave);
-});
+// saveBtn.addEventListener("click", function () {
+//     isSave = is_save(saveRadios);
+//     save_msg(isSave);
+// });
 /**
  * 上传事件
  */

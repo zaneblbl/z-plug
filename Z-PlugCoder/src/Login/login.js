@@ -1,9 +1,20 @@
 require('./login.css')
 import common from '../../Common/common'
 let login = {
-  clientID: 'c92b731ae212fbc66088',
-  clientSecret: 'd3f4065441e8ed9d2d6a965af327348c570523ea',
+  clientID: '',
+  clientSecret: '',
   init() {
+    let self=this
+    if (chrome.storage) {
+      chrome.storage.sync.get({
+        config__clientID: '',
+        config__clientSecret: ''
+      }, function (items) {
+        self.config__clientID = items.config__clientID;
+        self.config__clientSecret = items.config__clientSecret;
+      });
+    }
+
     if (window.location.href.indexOf(`https://zaneblbl.github.io/z-plug`) != -1) {
       this.loginListener()
     } else {
@@ -34,7 +45,6 @@ let login = {
 
   },
   loginListener() {
-    let xhr = new XMLHttpRequest()
     let clientID = this.clientID
     let clientSecret = this.clientSecret
     let url = `https://github.com/login/oauth/authorize?client_id=${clientID}`
