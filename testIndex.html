@@ -13,6 +13,9 @@
 <script>
    let clientID = `c92b731ae212fbc66088`
     let clientSecret = `d3f4065441e8ed9d2d6a965af327348c570523ea`
-     window.postMessage({'clientID': clientID,'clientSecret':clientSecret}, '*');
+    setTimeout(() => {
+      window.postMessage({'clientID': clientID,'clientSecret':clientSecret}, '*');
+    }, 3000);
+
 </script>
 </html>
