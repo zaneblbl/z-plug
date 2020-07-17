@@ -56,6 +56,7 @@ let login = {
       }
       this.toLogin(param)
     } else {
+      // github第三方授权登录后返回回调页面带回code
       window.location.href = url
     }
   },

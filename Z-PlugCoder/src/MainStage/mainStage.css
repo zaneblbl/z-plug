@@ -1,0 +1,10 @@
+.zPlug__main{
+  display: inline-block;
+  width:30px;
+  height:30px;
+  background: radial-gradient(#f00,#ff0);
+  position: fixed;
+  right:0;
+  top:0;
+  border-radius: 50%;
+}

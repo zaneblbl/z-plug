@@ -4,7 +4,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   entry: {
-    main: ['./Z-PlugCoder/src/WindowPlug/window.js', 
+    main: ['./Z-PlugCoder/src/MainStage/mainStage.js', 
+          './Z-PlugCoder/src/WindowPlug/window.js', 
           './Z-PlugCoder/src/TranslatePlug/translate.js',
           // './Z-PlugCoder/src/Sprite/bird/bird.js',
           './Z-PlugCoder/src/TranslatePlug/inputTranslate.js',
