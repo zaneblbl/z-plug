@@ -62,7 +62,6 @@ let common = {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.status === 200 && xhr.readyState === 4) {
-                    // alert(xhr.responseText.toString());
                     resolve(xhr.responseText);
                 }
             };

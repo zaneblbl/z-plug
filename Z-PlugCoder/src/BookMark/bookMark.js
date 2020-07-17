@@ -99,7 +99,7 @@ function createlist(marklist, parentId) {
  * 连接github,更新书签
  */
 function update_github_marks(userName, access_token, path, marklist) {
-    let url = `https://api.github.com/repos/${userName}/${path.substring(0,path.indexOf('/'))}/contents/${path.substring(path.indexOf('/')+1)}?access_token=${access_token}`;
+    let url = `https://api.github.com/repos/${userName}/${path.substring(0,path.indexOf('/'))}/contents/${path.substring(path.indexOf('/')+1)}`;
     let params = {};
     get_github_content(userName, access_token, path).then((data) => {
         params.sha = JSON.parse(data).sha;
@@ -111,7 +111,8 @@ function update_github_marks(userName, access_token, path, marklist) {
                 chrome.extension.sendMessage({
                     'url': url,
                     'type': 'put',
-                    'params': params
+                    'params': params,
+                    'access_token':access_token
                 }, function (ret) {
                     if (ret) {
                         showMsg.innerText = 'uplaod success！';
@@ -133,12 +134,13 @@ function update_github_marks(userName, access_token, path, marklist) {
  * 获取操作文件的所有信息
  */
 function get_github_content(userName, access_token, path) {
-    let url = `https://api.github.com/repos/${userName}/${path.substring(0,path.indexOf('/'))}/contents/${path.substring(path.indexOf('/')+1)}?access_token=${access_token}`;
+    let url = `https://api.github.com/repos/${userName}/${path.substring(0,path.indexOf('/'))}/contents/${path.substring(path.indexOf('/')+1)}`;
     return new Promise((resolve, reject) => {
         try {
             chrome.extension.sendMessage({
                 'url': url,
-                'type': 'get'
+                'type': 'get',
+                'access_token':access_token
             }, function (ret) {
                 if (ret) {
                     resolve(ret);

@@ -52,8 +52,6 @@ let z_config = {
   setStorage() {
     let self = this
     self.windowConfigSave.addEventListener('click', function () {
-      console.log(self.config__clientSecret.value);
-      
       if (chrome.storage) {
         chrome.storage.sync.set({
           config__window__backImg: self.config__window__backImg.value,
