@@ -28,6 +28,10 @@ let login = {
     }
 
   },
+  clear(){
+    let login=document.getElementById('zPlug__login__btn')
+    document.body.removeChild(login)
+  },
   toLogin(param) {
     let self = this
     chrome.extension.sendMessage({
@@ -73,4 +77,5 @@ let login = {
   },
 }
 
-login.init()
+export default login
+// login.init()

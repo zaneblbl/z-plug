@@ -3,164 +3,165 @@ require('./window.css')
 import common from '../../Common/common'
 const window_url = 'http://wthrcdn.etouch.cn/weather_mini?city=';
 let city = '杭州';
-let config__window__backImg=``
-let config__window__foreColor=``
+let config__window__backImg = ``
+let config__window__foreColor = ``
 
-if(chrome.storage){
+if (chrome.storage) {
     chrome.storage.sync.get({
         config__window__backImg: '',
-        config__window__foreColor:''
+        config__window__foreColor: ''
     }, function (items) {
         config__window__backImg = items.config__window__backImg;
-        config__window__foreColor=items.config__window__foreColor;
+        config__window__foreColor = items.config__window__foreColor;
     });
 }
 
-
-if (isPhone() == 'pc') {
-    show_window_data(city);
-}
-function isPhone() {
-    var u = navigator.userAgent
-    var ua = u.toLowerCase()
-    if (/iphone|ipad|ipod/.test(ua)) { // iOS 系统 
-        return 'ios'
-    } else if (/android/.test(ua)) { // 安卓系统
-        return 'android'
-    } else {
-        return 'pc'
-    }
-}
-//展示天气信息
-function show_window_data(city) {
-    get_window_data(city).then((ret) => {
-        if (ret) {
-            ret = JSON.parse(ret);
-            let {
-                data,
-                status
-            } = ret;
-
-            if (status == 1000) {
+let window = {
+    init() {
+        if (this.isPhone() == 'pc') {
+            this.show_window_data(city);
+        }
+    },
+    clear(){
+        let temp=document.getElementById('z_temp')
+        document.body.removeChild(temp)
+    },
+    isPhone() {
+        var u = navigator.userAgent
+        var ua = u.toLowerCase()
+        if (/iphone|ipad|ipod/.test(ua)) { // iOS 系统 
+            return 'ios'
+        } else if (/android/.test(ua)) { // 安卓系统
+            return 'android'
+        } else {
+            return 'pc'
+        }
+    },
+    //展示天气信息
+    show_window_data(city) {
+        this.get_window_data(city).then((ret) => {
+            if (ret) {
+                ret = JSON.parse(ret);
                 let {
-                    city,
-                    forecast,
-                    ganmao,
-                    wendu
-                } = data;
+                    data,
+                    status
+                } = ret;
 
-                //温度天气dom显示
-                let temp = document.createElement('div');
-                temp.id = 'z_temp';
-                temp.classList.add('plug_window_temp');
-                temp.innerHTML = `<div >
+                if (status == 1000) {
+                    let {
+                        city,
+                        forecast,
+                        ganmao,
+                        wendu
+                    } = data;
+
+                    //温度天气dom显示
+                    let temp = document.createElement('div');
+                    temp.id = 'z_temp';
+                    temp.classList.add('plug_window_temp');
+                    temp.innerHTML = `<div >
                 <div class='window_background' style="background-image:url('${config__window__backImg}')"></div>
-                                    <img src='${matching_icon(forecast[0].type,window_icon)}' title='${forecast[0].type}' />
+                                    <img src='${this.matching_icon(forecast[0].type,window_icon)}' title='${forecast[0].type}' />
                                     <span class='window_small_font window_city' id='window_city' contenteditable='false' style="color:${config__window__foreColor}">${city}</span>
                                     <span class='window_wendu' title=${ganmao} style="color:${config__window__foreColor}">${wendu}℃</span>
                                     <span class='window_small_font window_date' style="color:${config__window__foreColor}">${forecast[0].date}</span>
                                     <span class='window_small_font window_high' style="color:${config__window__foreColor}">${forecast[0].high}</span>
                                     <span class='window_small_font window_low' style="color:${config__window__foreColor}">${forecast[0].low}</span>
                                     <span class='window_small_font window_fengli' style="color:${config__window__foreColor}">
-                                    ${regex_fengli(forecast[0].fengxiang,forecast[0].fengli)}
+                                    ${this.regex_fengli(forecast[0].fengxiang,forecast[0].fengli)}
                                     </span>
                                 </div>`;
-                window.document.body.appendChild(temp);
+                    document.body.appendChild(temp);
 
-                let movetarget = document.getElementById('z_temp');
-                common.stage_move(movetarget);
-                city_change();
+                    let movetarget = document.getElementById('z_temp');
+                    common.stage_move(movetarget);
+                    this.city_change();
+                }
+
+            }
+        }, (error) => {
+            console.log(error);
+        });
+    },
+    //匹配icon
+    matching_icon(type, window_icon) {
+        for (let icon in window_icon) {
+            if (window_icon.hasOwnProperty(icon)) {
+                if (type === window_icon[icon].style)
+                    return window_icon[icon].base64;
+                //小到中雨等
+                else if (type.indexOf('雨') != -1 && type.indexOf('到') != -1) {
+                    return window_icon[0].base64;
+                } else if (type.indexOf('云') != -1 && type.indexOf('到') != -1) {
+                    return window_icon[2].base64;
+                } else if (type.indexOf('晴') != -1 && type.indexOf('到') != -1) {
+                    return window_icon[5].base64;
+                } else if (type.indexOf('阴')) {
+                    return window_icon[2].base64;
+                }
+            }
+        }
+    },
+    //风力风向正则
+    regex_fengli(fengxiang, fengli) {
+        let result = fengli;
+        let pattern = /(?<=<!\[CDATA\[).+(?=\]\]>)/g;
+        result = fengli.match(pattern);
+        return fengxiang + " " + result;
+    },
+    //获取天气信息
+    get_window_data(city) {
+        return new Promise((resolve, reject) => {
+            try {
+                chrome.extension.sendMessage({
+                    'url': window_url + city,
+                    'type': 'get'
+                }, function (ret) {
+                    if (ret) {
+                        resolve(ret);
+                    }
+                });
+            } catch (e) {
+                reject(e)
+            } finally {
+
             }
 
-        }
-    }, (error) => {
-        console.log(error);
-    });
-}
+        });
+    },
 
-//匹配icon
-function matching_icon(type, window_icon) {
-    for (let icon in window_icon) {
-        if (window_icon.hasOwnProperty(icon)) {
-            if (type === window_icon[icon].style)
-                return window_icon[icon].base64;
-            //小到中雨等
-            else if (type.indexOf('雨') != -1 && type.indexOf('到') != -1) {
-                return window_icon[0].base64;
-            } else if (type.indexOf('云') != -1 && type.indexOf('到') != -1) {
-                return window_icon[2].base64;
-            } else if (type.indexOf('晴') != -1 && type.indexOf('到') != -1) {
-                return window_icon[5].base64;
-            } else if (type.indexOf('阴')) {
-                return window_icon[2].base64;
+    //改变城市
+    city_change() {
+        let window_city = document.getElementById('window_city');
+        window_city.addEventListener('click', function () {
+            //span 内容可编辑
+            window_city.setAttribute('contenteditable', 'true');
+        });
+        //失去焦点事件
+        window_city.addEventListener('blur', function () {
+            this.reget_temp(window_city);
+            window_city.setAttribute('contenteditable', 'false');
+        });
+        //回车事件
+        window_city.addEventListener('keydown', function (e) {
+            e = e || window.event;
+            if (e.keyCode === 13) {
+                this.reget_temp(window_city);
+                window_city.setAttribute('contenteditable', 'false');
             }
-        }
+        });
+    },
+    //改变城市，重新获取数据
+    reget_temp(window_city) {
+        try {
+            let temp = document.getElementById('temp');
+            if (temp) {
+                document.body.removeChild(temp);
+                this.show_window_data(window_city.innerText);
+            }
+        } catch (e) {}
     }
 }
-
-//风力风向正则
-function regex_fengli(fengxiang, fengli) {
-    let result = fengli;
-    let pattern = /(?<=<!\[CDATA\[).+(?=\]\]>)/g;
-    result = fengli.match(pattern);
-    return fengxiang + " " + result;
-}
-
-//获取天气信息
-function get_window_data(city) {
-    return new Promise((resolve, reject) => {
-        try {
-            chrome.extension.sendMessage({
-                'url': window_url + city,
-                'type': 'get'
-            }, function (ret) {
-                if (ret) {
-                    resolve(ret);
-                }
-            });
-        } catch (e) {
-            reject(e)
-        } finally {
-
-        }
-
-    });
-}
-
-//改变城市
-function city_change() {
-    let window_city = document.getElementById('window_city');
-
-    window_city.addEventListener('click', function () {
-        //span 内容可编辑
-        window_city.setAttribute('contenteditable', 'true');
-    });
-    //失去焦点事件
-    window_city.addEventListener('blur', function () {
-        reget_temp(window_city);
-        window_city.setAttribute('contenteditable', 'false');
-    });
-    //回车事件
-    window_city.addEventListener('keydown', function (e) {
-        e = e || window.event;
-        if (e.keyCode === 13) {
-            reget_temp(window_city);
-            window_city.setAttribute('contenteditable', 'false');
-        }
-
-    });
-}
-//改变城市，重新获取数据
-function reget_temp(window_city) {
-    try {
-        let temp = document.getElementById('temp');
-        if (temp) {
-            window.document.body.removeChild(temp);
-            show_window_data(window_city.innerText);
-        }
-    } catch (e) {}
-}
-
 
 //中雨、大雨、小雨、雷暴、晴天、多云
 let window_icon = [{
@@ -194,3 +195,6 @@ let window_icon = [{
         base64: "data:image/png;base64,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"
     },
 ]
+
+// window.init()
+export default window

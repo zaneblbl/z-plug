@@ -4,7 +4,7 @@
   height:30px;
   background: radial-gradient(#f00,#ff0);
   position: fixed;
-  right:0;
-  top:0;
+  left:30px;
+  bottom:30px;
   border-radius: 50%;
 }

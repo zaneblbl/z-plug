@@ -1,8 +1,11 @@
-// require('./mainStage.css')
+require('./mainStage.css')
+import login from '../Login/login.js'
+import window from '../WindowPlug/window.js'
 const main={
   isOpen:false,
   init(){
     this.createDom()
+    
   },
   createDom(){
     let shrinkIcon=document.createElement('div')
@@ -12,8 +15,13 @@ const main={
   },
   open(){
     this.isOpen=!this.isOpen
-    console.log(this.isOpen);
-    
+    if(this.isOpen){
+      login.init()
+      window.init()
+    }else{
+      window.clear()
+      login.clear()
+    }
   }
 }
 
