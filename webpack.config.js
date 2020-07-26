@@ -10,7 +10,8 @@ module.exports = {
           './Z-PlugCoder/src/TranslatePlug/translate.js',
           // './Z-PlugCoder/src/Sprite/bird/bird.js',
           './Z-PlugCoder/src/TranslatePlug/inputTranslate.js',
-          './Z-PlugCoder/src/login/login.js'],
+          './Z-PlugCoder/src/login/login.js',
+          './Z-PlugCoder/src/Sprite/loveGirl/loveGirl.js'],
           
     config: ['./Z-PlugCoder/src/BookMark/bookMark.js', './Z-PlugCoder/Config/config.js']
   },
