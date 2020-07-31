@@ -40,6 +40,7 @@ module.exports = {
           options: {
             // 图片大小小于10000B的会转换成base64
             limit: 10000,
+            esModule: false,
             name: 'images/[name].[hash].[ext]'
           }
         }]
