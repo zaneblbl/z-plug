@@ -1897,16 +1897,16 @@ var spine;
 			var request = new XMLHttpRequest();
 			request.onreadystatechange = function () {
 				if (request.readyState == XMLHttpRequest.DONE) {
-					// if (request.status >= 200 && request.status < 300) {
+					if (request.status >= 200 && request.status < 300) {
 						_this.assets[path] = request.responseText;
 						if (success)
 							success(path, request.responseText);
-					// }
-					// else {
-					// 	_this.errors[path] = "Couldn't load text " + path + ": status " + request.status + ", " + request.responseText;
-					// 	if (error)
-					// 		error(path, "Couldn't load text " + path + ": status " + request.status + ", " + request.responseText);
-					// }
+					}
+					else {
+						_this.errors[path] = "Couldn't load text " + path + ": status " + request.status + ", " + request.responseText;
+						if (error)
+							error(path, "Couldn't load text " + path + ": status " + request.status + ", " + request.responseText);
+					}
 					_this.toLoad--;
 					_this.loaded++;
 				}
@@ -1915,6 +1915,8 @@ var spine;
 			request.send();
 		};
 		AssetManager.prototype.loadTexture = function (path, success, error) {
+			console.log(path);
+			
 			var _this = this;
 			if (success === void 0) { success = null; }
 			if (error === void 0) { error = null; }
@@ -6712,3 +6714,5 @@ var spine;
 	})(canvas = spine.canvas || (spine.canvas = {}));
 })(spine || (spine = {}));
 //# sourceMappingURL=spine-canvas.js.map
+
+export default spine

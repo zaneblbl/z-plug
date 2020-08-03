@@ -1,4 +1,3 @@
-require('../../../Common/spine-canvas')
 import spine from '../../../Common/spine-canvas'
 let alien = {
   spinePath:'',
@@ -13,7 +12,7 @@ let alien = {
   bounds:null,
   skeletonRenderer:null,
   init() {
-    this.spinePath='./resource/'
+    this.spinePath='https://zaneblbl.github.io/z-plug/Z-PlugCoder/src/Sprite/alien/resource/'
     this.skelName='alien'
     this.animName='death'
     this.createDom();
@@ -27,14 +26,16 @@ let alien = {
     this.spineInit(canvas)
   },
   spineInit(canvas){
-    let context = canvas.getContext("2d");
-    this.skeletonRenderer = new spine.canvas.SkeletonRenderer(context);
+    this.context = canvas.getContext("2d");
+    this.skeletonRenderer = new spine.canvas.SkeletonRenderer(this.context);
     // enable debug rendering
     this.skeletonRenderer.debugRendering = false;
     // enable the triangle renderer, supports meshes, but may produce artifacts in some browsers
     this.skeletonRenderer.triangleRendering = false;
 
     this.assetManager = new spine.canvas.AssetManager();
+    console.log(this.assetManager);
+    
     this.assetManager.loadText(this.spinePath + this.skelName + ".json");
     this.assetManager.loadText(this.spinePath + this.skelName + ".atlas");
     this.assetManager.loadTexture(this.spinePath + this.skelName + ".png");
@@ -123,13 +124,14 @@ let alien = {
     resize();
 
     state.update(delta);
-    state.apply(skeleton);
-    skeleton.updateWorldTransform();
-    skeletonRenderer.draw(skeleton);
+    state.apply(this.skeleton);
+    this.skeleton.updateWorldTransform();
+    this.skeletonRenderer.draw(skeleton);
 
-    requestAnimationFrame(render);
+    requestAnimationFrame(this.render);
   },
   resize() {
+    let canvas=this.canvas
     var w = canvas.clientWidth;
     var h = canvas.clientHeight;
     if (canvas.width != w || canvas.height != h) {
@@ -147,10 +149,10 @@ let alien = {
     var width = canvas.width * scale;
     var height = canvas.height * scale;
 
-    context.setTransform(1, 0, 0, 1, 0, 0);
-    context.scale(1 / scale, 1 / scale);
-    context.translate(-centerX, -centerY);
-    context.translate(width / 2, height / 2);
+    this.context.setTransform(1, 0, 0, 1, 0, 0);
+    this.context.scale(1 / scale, 1 / scale);
+    this.context.translate(-centerX, -centerY);
+    this.context.translate(width / 2, height / 2);
   }
 }
 
