@@ -6,12 +6,10 @@ module.exports = {
   entry: {
     main: [
         './Z-PlugCoder/src/MainStage/mainStage.js', 
-          // './Z-PlugCoder/src/WindowPlug/window.js', 
           './Z-PlugCoder/src/TranslatePlug/translate.js',
-          // './Z-PlugCoder/src/Sprite/bird/bird.js',
           './Z-PlugCoder/src/TranslatePlug/inputTranslate.js',
           './Z-PlugCoder/src/login/login.js',
-          './Z-PlugCoder/src/Sprite/loveGirl/loveGirl.js'],
+          './Z-PlugCoder/src/Sprite/spriteStage.js'],
           
     config: ['./Z-PlugCoder/src/BookMark/bookMark.js', './Z-PlugCoder/Config/config.js']
   },

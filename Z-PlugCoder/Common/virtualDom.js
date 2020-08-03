@@ -1,3 +1,14 @@
+/* 
+*   用法：
+*/
+// let vdom = ``
+// vdom = createEl('div', {
+//   'id': 'root',
+//   class: 'zPlug__coverBackPic',
+//   style: `position:relative;width:${this.width}px;height:${this.height}px;`
+// }, [createEl()...])
+// let rootnode = vdom.render()
+// document.body.appendChild(rootnode)
 // 创建dom
 export default class CreateEl {
   constructor (tagName, props, children) {
