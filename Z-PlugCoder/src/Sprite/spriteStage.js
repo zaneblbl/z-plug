@@ -2,9 +2,7 @@
 import alien from './alien/alien'
 let spriteStage={
   init(){
-    console.log('66666');
-    
-    // alien.init()
+    alien.init()
   }
 }
 

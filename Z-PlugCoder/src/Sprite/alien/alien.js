@@ -1,13 +1,17 @@
 require('../../../Common/spine-canvas')
+import spine from '../../../Common/spine-canvas'
 let alien = {
   spinePath:'',
   skelName:'',
   animName:'',
   lastFrameTime : Date.now() / 1000,
-  canvas, context,
-  assetManager,
-  skeleton, state, bounds,
-  skeletonRenderer,
+  canvas:null, 
+  context:null,
+  assetManager:null,
+  skeleton:null, 
+  state:null, 
+  bounds:null,
+  skeletonRenderer:null,
   init() {
     this.spinePath='./resource/'
     this.skelName='alien'
@@ -20,13 +24,10 @@ let alien = {
     canvas.height = 100
     canvas.id = 'zPlug__alien'
     document.body.appendChild(canvas)
-    console.log(canvas);
-    
     this.spineInit(canvas)
   },
   spineInit(canvas){
-    context = canvas.getContext("2d");
-
+    let context = canvas.getContext("2d");
     this.skeletonRenderer = new spine.canvas.SkeletonRenderer(context);
     // enable debug rendering
     this.skeletonRenderer.debugRendering = false;
@@ -41,8 +42,12 @@ let alien = {
     requestAnimationFrame(this.runSpine);
   },
   runSpine(){
-    if (assetManager.isLoadingComplete()) {
-      var data = loadSkeleton(this.skelName, this.animName, "default");
+    console.log('++++');
+    console.log(this.assetManager);
+    
+    
+    if (this.assetManager.isLoadingComplete()) {
+      var data = this.loadSkeleton(this.skelName, this.animName, "default");
       this.skeleton = data.skeleton;
       this.state = data.state;
       this.bounds = data.bounds;
@@ -56,8 +61,8 @@ let alien = {
 
     // Load the texture atlas using name.atlas and name.png from the AssetManager.
     // The function passed to TextureAtlas is used to resolve relative paths.
-    let atlas = new spine.TextureAtlas(assetManager.get(this.spinePath + name + ".atlas"), function (path) {
-      return assetManager.get(this.spinePath + path);
+    let atlas = new spine.TextureAtlas(this.assetManager.get(this.spinePath + name + ".atlas"), function (path) {
+      return this.assetManager.get(this.spinePath + path);
     });
 
     // Create a AtlasAttachmentLoader, which is specific to the WebGL backend.
@@ -67,7 +72,7 @@ let alien = {
     var skeletonJson = new spine.SkeletonJson(atlasLoader);
 
     // Set the scale to apply during parsing, parse the file, and create a new skeleton.
-    var skeletonData = skeletonJson.readSkeletonData(assetManager.get(this.spinePath + name + ".json"));
+    var skeletonData = skeletonJson.readSkeletonData(this.assetManager.get(this.spinePath + name + ".json"));
     var skeleton = new spine.Skeleton(skeletonData);
     skeleton.flipY = true;
     var bounds = calculateBounds(skeleton);
